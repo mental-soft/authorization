@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0'
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+}
