@@ -1,11 +1,4 @@
-### JetBrains
-# User-specific stuff:
-.idea/
-
 .gradle/
-
-!gradle-wrapper.jar
-ojdbc6.jar!
-
+.idea/
 build/
-out/
+/config/

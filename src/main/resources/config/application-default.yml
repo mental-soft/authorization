@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authorization-dev
+    username: dbuser
+    password: 12345
+  thymeleaf:
+    cache: false
+  jpa:
+    show-sql: true
+
+liquibase:
+    drop-first: true
