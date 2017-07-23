@@ -37,49 +37,39 @@
     </changeSet>
 
     <changeSet id="4" author="okan.demirtas" context="test-data">
-        <comment>Test datası eklendi</comment>
-
+        <comment>Test verisi eklendi</comment>
         <insert tableName="ROLE">
             <column name="KEY" value="test_Add_Key_1"/>
             <column name="NAME" value="veri ekleme rolü 1"/>
         </insert>
-
         <insert tableName="USER_ROLE">
             <column name="USER_ID" valueNumeric="1"/>
-            <column name="ROLE_ID" valueComputed="(SELECT id FROM ROLE WHERE id = 1 )" />
-
+            <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
         </insert>
-
         <insert tableName="ROLE">
             <column name="KEY" value="test_Add_Key2"/>
             <column name="NAME" value="veri ekleme rolü 2."/>
         </insert>
-
         <insert tableName="USER_ROLE">
             <column name="USER_ID" valueNumeric="1"/>
-            <column name="ROLE_ID" valueComputed="(SELECT id FROM ROLE WHERE id = 2 )" />
+            <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
         </insert>
-
         <insert tableName="ROLE">
             <column name="KEY" value="test_Update_Key_1"/>
             <column name="NAME" value="veri güncelleme rolü 1."/>
         </insert>
-
         <insert tableName="USER_ROLE">
             <column name="USER_ID" valueNumeric="2"/>
-            <column name="ROLE_ID" valueComputed="(SELECT id FROM ROLE WHERE id = 3 )" />
+            <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
         </insert>
-
         <insert tableName="ROLE">
             <column name="KEY" value="test_Update_Key_2"/>
             <column name="NAME" value="veri güncelleme rolü 2."/>
         </insert>
-
         <insert tableName="USER_ROLE">
             <column name="USER_ID" valueNumeric="2"/>
-            <column name="ROLE_ID" valueComputed="(SELECT id FROM ROLE WHERE id = 4 )" />
+            <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
         </insert>
-
     </changeSet>
 
 </databaseChangeLog>
