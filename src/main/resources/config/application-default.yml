@@ -9,4 +9,5 @@ spring:
     show-sql: true
 
 liquibase:
-    drop-first: true
+  drop-first: true
+  contexts: test-data

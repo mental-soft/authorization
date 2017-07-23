@@ -6,12 +6,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <!--Database scriptleri-->
-    <changeSet id="1" author="okan.demirtas">
-       <comment>Test tablosu</comment>
-        <createTable tableName="mytable">
-            <column name="COLUMN1" type="NUMBER" autoIncrement="true">
-            <constraints primaryKey="true"/>
-            </column>
-        </createTable>
-    </changeSet>
+
+    <include file="db/table_authorization.xml"/>
+
 </databaseChangeLog>
