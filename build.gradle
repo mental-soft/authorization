@@ -8,6 +8,12 @@ buildscript {
     }
 }
 
+//repositories {
+//    maven {
+//        url  "http://dl.bintray.com/mental-soft/meparty"
+//    }
+//}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
@@ -21,3 +27,7 @@ apply from: "https://raw.githubusercontent.com/mental-soft/gradle-config/master/
 
 
 apply from: "https://raw.githubusercontent.com/mental-soft/gradle-config/master/dependencies.gradle"
+
+//dependencies {
+//    compile 'com.teammental.memapper:memapper:1.1'
+//}

@@ -36,7 +36,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="4" author="okan.demirtas" context="test-data">
+    <changeSet id="3" author="okan.demirtas" context="test-data">
         <comment>Test verisi eklendi</comment>
         <insert tableName="ROLE">
             <column name="KEY" value="test_Add_Key_1"/>
