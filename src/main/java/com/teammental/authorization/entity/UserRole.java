@@ -2,6 +2,9 @@ package com.teammental.authorization.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -13,29 +16,42 @@ import javax.persistence.Table;
 @Table(name = "USER_ROLE")
 public class UserRole {
 
-  @Column(name = "USER_ID", columnDefinition = "numeric")
-  private int userId;
+  @Id
+  @Column(name = "id", columnDefinition = "integer")
+  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  private Integer id;
 
-  @Column(name = "ROLE_ID", columnDefinition = "integer")
-  private int roleId;
+  @Column(name = "user_id", columnDefinition = "numeric")
+  private Integer userId;
+
+  @Column(name = "role_id", columnDefinition = "integer", insertable = false, updatable = false)
+  private Integer roleId;
 
   @ManyToOne
-  @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
+  @JoinColumn(name = "role_id", referencedColumnName = "id")
   private Role role;
 
-  public int getUserId() {
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(int userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 
-  public int getRoleId() {
+  public Integer getRoleId() {
     return roleId;
   }
 
-  public void setRoleId(int roleId) {
+  public void setRoleId(Integer roleId) {
     this.roleId = roleId;
   }
 

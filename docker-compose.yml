@@ -4,7 +4,7 @@ services:
     image: mental/authorization
     build: .
     ports:
-      - "8080:8080"
+      - "8080:10030"
     links:
       - cont_postgresql
     depends_on:

@@ -13,7 +13,9 @@
             <column name="ID" type="serial" incrementBy="2" startWith="5" >
                 <constraints primaryKey="true" primaryKeyName="PK_ID"/>
             </column>
-            <column name="KEY" type="VARCHAR(100)"/>
+            <column name="KEY" type="VARCHAR(100)">
+                <constraints unique="true" uniqueConstraintName="UK_ID"/>
+            </column>
             <column name="NAME" type="VARCHAR(250)"/>
         </createTable>
        <alterSequence incrementBy="1"
@@ -27,6 +29,9 @@
             User tablosunda user_id fk sanal olarak alır.
         </comment>
         <createTable tableName="USER_ROLE">
+            <column name="ID" type="serial" incrementBy="2" startWith="5" >
+                <constraints primaryKey="true" primaryKeyName="PK_USERROLEID"/>
+            </column>
             <column name="USER_ID" type="NUMBER"/>
             <column name="ROLE_ID" type="Int">
                 <constraints foreignKeyName="FK_USERROLE_ROLE"
@@ -39,7 +44,7 @@
     <changeSet id="3" author="okan.demirtas" context="test-data">
         <comment>Test verisi eklendi</comment>
         <insert tableName="ROLE">
-            <column name="KEY" value="test_Add_Key_1"/>
+            <column name="KEY" value="ROLE_GET_ALL"/>
             <column name="NAME" value="veri ekleme rolü 1"/>
         </insert>
         <insert tableName="USER_ROLE">
@@ -47,7 +52,7 @@
             <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
         </insert>
         <insert tableName="ROLE">
-            <column name="KEY" value="test_Add_Key2"/>
+            <column name="KEY" value="ROLE_CREATE"/>
             <column name="NAME" value="veri ekleme rolü 2."/>
         </insert>
         <insert tableName="USER_ROLE">
@@ -55,21 +60,30 @@
             <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
         </insert>
         <insert tableName="ROLE">
-            <column name="KEY" value="test_Update_Key_1"/>
-            <column name="NAME" value="veri güncelleme rolü 1."/>
+            <column name="KEY" value="ROLE_GET_ONE"/>
+            <column name="NAME" value="bir adet veri getirme rolü 1."/>
         </insert>
         <insert tableName="USER_ROLE">
             <column name="USER_ID" valueNumeric="2"/>
             <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
         </insert>
         <insert tableName="ROLE">
-            <column name="KEY" value="test_Update_Key_2"/>
+            <column name="KEY" value="ROLE_UPDATE"/>
             <column name="NAME" value="veri güncelleme rolü 2."/>
         </insert>
         <insert tableName="USER_ROLE">
             <column name="USER_ID" valueNumeric="2"/>
             <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
         </insert>
+        <insert tableName="ROLE">
+            <column name="KEY" value="ROLE_DELETE"/>
+            <column name="NAME" value="veri silme rolü 2."/>
+        </insert>
+        <insert tableName="USER_ROLE">
+            <column name="USER_ID" valueNumeric="2"/>
+            <column name="ROLE_ID" valueComputed="( select currval('role_id_seq') )" />
+        </insert>
+
     </changeSet>
 
 </databaseChangeLog>
