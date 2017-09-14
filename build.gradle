@@ -28,8 +28,4 @@ apply from: "https://raw.githubusercontent.com/mental-soft/gradle-config/master/
 
 apply from: "https://raw.githubusercontent.com/mental-soft/gradle-config/master/dependencies-api.gradle"
 
-//Testte çıkan el hataları için eklendi. İkisi de olmalı.
-
-
-
 

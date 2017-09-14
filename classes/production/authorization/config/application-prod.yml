@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${connection:localhost}:5432/authorization-prod
+    username: dbuser
+    password: 12345

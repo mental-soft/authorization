@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "USER_ROLE")
-public class UserRole {
+public class RoleUser {
 
   @Id
   @Column(name = "id", columnDefinition = "integer")

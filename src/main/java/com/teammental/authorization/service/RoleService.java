@@ -2,6 +2,7 @@ package com.teammental.authorization.service;
 
 import com.teammental.authorization.dto.RoleDto;
 
+import com.teammental.authorization.exception.RoleException;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public interface RoleService {
 
   RoleDto getById(Integer roleId) throws Exception;
 
-  void deleteById(Integer roleId) throws Exception;
+  void deleteById(Integer roleId) throws RoleException;
 
   int saveOrUpdate(RoleDto dto) throws Exception;
 }

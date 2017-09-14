@@ -1,0 +1,16 @@
+liquibase:
+  change-log: classpath:/db/db.changelog.xml
+
+server:
+  port: 10030
+  contextPath: /authorization
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+

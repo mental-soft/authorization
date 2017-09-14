@@ -11,7 +11,7 @@ public class RoleException extends Exception {
   /**
    * Throw ederken hızlı oluşturulması için eklenmiştir.
    */
-  public UserException(int code, String label) {
+  public RoleException(int code, String label) {
     this.code = code;
     this.label = label;
   }

@@ -21,7 +21,7 @@ public class Role {
 
   @Id
   @Column(name = "id", columnDefinition = "integer")
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(name = "key")
@@ -31,7 +31,7 @@ public class Role {
   private String name;
 
   @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-  private List<UserRole> userRoles;
+  private List<RoleUser> roleUsers;
 
   public Integer getId() {
     return id;
@@ -57,12 +57,12 @@ public class Role {
     this.name = name;
   }
 
-  public List<UserRole> getUserRoles() {
-    return userRoles;
+  public List<RoleUser> getRoleUsers() {
+    return roleUsers;
   }
 
-  public void setUserRoles(List<UserRole> userRoles) {
-    this.userRoles = userRoles;
+  public void setRoleUsers(List<RoleUser> roleUsers) {
+    this.roleUsers = roleUsers;
   }
 
 }
