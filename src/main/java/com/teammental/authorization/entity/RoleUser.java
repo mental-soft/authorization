@@ -18,7 +18,7 @@ public class UserRole {
 
   @Id
   @Column(name = "id", columnDefinition = "integer")
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(name = "user_id", columnDefinition = "numeric")
