@@ -53,7 +53,7 @@ Gradle build işlemi için
 
 Örneğin
 
-<code>java -jar build/libs/authentication.jar --spring.profiles.active=qa</code>
+<code>java -jar build/libs/authorization.jar --spring.profiles.active=qa</code>
 
 
 # Docker
