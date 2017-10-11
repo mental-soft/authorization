@@ -126,7 +126,6 @@ public class RoleController {
 
 
   @PutMapping(value = {REQUEST_MAPPING_ROLE_ONE})
-
   @ResponseBody
   public ResponseEntity roleUpdatePut(@RequestBody RoleDto roleDto, @PathVariable int id,
                                       HttpServletRequest request) throws Exception {

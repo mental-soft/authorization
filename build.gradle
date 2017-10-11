@@ -23,6 +23,11 @@ jar {
     //version =  '0.1.0'
 }
 
+dependencies {
+    compile 'com.teammental:meconfig:1.0'
+
+}
+
 apply from: "https://raw.githubusercontent.com/mental-soft/gradle-config/master/global-config.gradle"
 
 

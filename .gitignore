@@ -1,5 +1,12 @@
-.gradle/
+*.jar
+
 .idea/
-build/
-/config/
 *.iml
+
+.gradle/
+
+!gradle-wrapper.jar
+
+build/
+out/
+/config/
