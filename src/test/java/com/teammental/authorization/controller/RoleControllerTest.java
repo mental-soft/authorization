@@ -5,11 +5,12 @@ import com.teammental.authorization.config.TestUtil;
 import com.teammental.authorization.dto.RoleDto;
 import com.teammental.authorization.entity.Role;
 import com.teammental.authorization.service.RoleService;
-import com.teammental.meconfig.exception.entity.EntityNotFoundException;
 import com.teammental.meconfig.handler.rest.EntityNotFoundExceptionRestHandler;
 import com.teammental.memapper.MeMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,9 +23,7 @@ import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -44,7 +43,7 @@ public class RoleControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    public static final String REQUEST_MAPPING_ROLES = "roles";
+    private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
 
     @Test
     public void shouldReturnOkAndRoles_whenRolesFound() throws Exception {
@@ -55,10 +54,9 @@ public class RoleControllerTest {
                 .mapToList(RoleDto.class);
         List<RoleDto> expectedDtos = expectedDtosOptional.get();
 
-        when(roleService.getAll())
-                .thenReturn(expectedDtos);
+        doReturn(expectedDtos).when(roleService).getAll();
 
-        mockMvc.perform(get(REQUEST_MAPPING_ROLES))
+        mockMvc.perform(get(RoleController.REQUEST_MAPPING_ROLES))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$", hasSize(roleSize)))
@@ -69,15 +67,20 @@ public class RoleControllerTest {
 
         verify(roleService, times(1)).getAll();
 
-
     }
 
     @Test
     public void shouldReturn404_whenNoRoleFound() throws Exception {
-        when(roleService.getAll())
-                .thenThrow(new EntityNotFoundException());
+        final int roleSize = 0;
+        List<Role> expectedRoles = RoleGenerator.prepareRandomListofRoles(roleSize);
 
-        mockMvc.perform(get(REQUEST_MAPPING_ROLES))
+        Optional<List<RoleDto>> expectedDtosOptional = MeMapper.getMapperFromList(expectedRoles)
+                .mapToList(RoleDto.class);
+        List<RoleDto> expectedDtos = expectedDtosOptional.get();
+
+        doReturn(expectedDtos).when(roleService).getAll();
+
+        mockMvc.perform(get(RoleController.REQUEST_MAPPING_ROLES))
                 .andExpect(status().isNotFound());
 
         verify(roleService, times(1)).getAll();

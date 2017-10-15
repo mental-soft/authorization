@@ -32,8 +32,8 @@ public class RoleUserController {
 
   public static final String AN_ERROR_OCCURED = "Bir Hata oluştu";
 
-  public static final String REQUEST_MAPPING_GET_USERS_OF_ROLE = "roles/{id}/users";
-  public static final String REQUEST_MAPPING_ADD_USERS_TO_ROLE = "roles/users";
+  public static final String REQUEST_MAPPING_GET_USERS_OF_ROLE = "/roles/{id}/users";
+  public static final String REQUEST_MAPPING_ADD_USERS_TO_ROLE = "/roles/users";
 
   /**
    * Role ait kullanıcları getirir.

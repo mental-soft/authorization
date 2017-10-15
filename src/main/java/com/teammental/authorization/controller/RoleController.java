@@ -43,7 +43,7 @@ public class RoleController {
   public static final String ROLE_NOT_FOUND = "Herhangi bir rol bulunamadı.";
 
   public static final String REQUEST_MAPPING_ROLE_ONE = "/roles/{id}";
-  public static final String REQUEST_MAPPING_ROLES = "roles";
+  public static final String REQUEST_MAPPING_ROLES = "/roles";
 
 
   /**
