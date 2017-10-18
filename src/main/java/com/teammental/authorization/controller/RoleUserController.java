@@ -25,15 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RoleUserController {
 
-  @Autowired
-  RoleUserService roleUserService;
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RoleUserController.class);
-
   public static final String AN_ERROR_OCCURED = "Bir Hata oluştu";
-
   public static final String REQUEST_MAPPING_GET_USERS_OF_ROLE = "/roles/{id}/users";
   public static final String REQUEST_MAPPING_ADD_USERS_TO_ROLE = "/roles/users";
+  private static final Logger LOGGER = LoggerFactory.getLogger(RoleUserController.class);
+  @Autowired
+  RoleUserService roleUserService;
 
   /**
    * Role ait kullanıcları getirir.
@@ -57,7 +54,6 @@ public class RoleUserController {
     return new ResponseEntity<String>(AN_ERROR_OCCURED, HttpStatus.INTERNAL_SERVER_ERROR);
 
   }
-
 
   //  @PostMapping(value = REQUEST_MAPPING_ADD_USERS_TO_ROLE)
   //  @ResponseBody
@@ -97,6 +93,7 @@ public class RoleUserController {
   @ResponseBody
   public ResponseEntity roleAddPost(@RequestBody List<RoleUserDto> roleUserDtoList,
                                     HttpServletRequest request) throws Exception {
+
     LOGGER.info("********* Post başladı.");
     LOGGER.info(request.getMethod());
 

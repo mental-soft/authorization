@@ -11,10 +11,12 @@ public class FirstController {
 
   /**
    * Projenin deneme index controller.
+   *
    * @return index sayfası
    */
-  @RequestMapping({"/","/index"})
+  @RequestMapping({"/", "/index"})
   public String getIndex() {
+
     return "index";
   }
 }

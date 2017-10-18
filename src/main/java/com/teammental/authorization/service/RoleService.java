@@ -1,7 +1,6 @@
 package com.teammental.authorization.service;
 
 import com.teammental.authorization.dto.RoleDto;
-
 import com.teammental.authorization.exception.RoleException;
 import java.util.List;
 

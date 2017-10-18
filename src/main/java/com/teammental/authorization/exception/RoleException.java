@@ -12,6 +12,7 @@ public class RoleException extends Exception {
    * Throw ederken hızlı oluşturulması için eklenmiştir.
    */
   public RoleException(int code, String label) {
+
     this.code = code;
     this.label = label;
   }
@@ -20,6 +21,7 @@ public class RoleException extends Exception {
    * Code alanı ile dönülen hata mesajına göre rest uyarısı oluşuturulabilir.
    */
   public int getCode() {
+
     return code;
   }
 
@@ -27,6 +29,7 @@ public class RoleException extends Exception {
    * Uyarı veya hata mesajının içeriğidir.
    */
   public String getLabel() {
+
     return label;
   }
 }

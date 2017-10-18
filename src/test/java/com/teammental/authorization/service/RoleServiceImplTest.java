@@ -1,13 +1,5 @@
 package com.teammental.authorization.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.when;
-
 import com.teammental.authorization.dto.RoleDto;
 import com.teammental.authorization.entity.Role;
 import com.teammental.authorization.exception.RoleException;
@@ -25,7 +17,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
+import static org.junit.Assert.assertEquals;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by okan on 5.08.2017.
@@ -33,6 +31,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class RoleServiceImplTest {
+
   @InjectMocks
   private RoleService roleService = new RoleServiceImpl();
   @MockBean(name = "roleRepository")
@@ -40,15 +39,16 @@ public class RoleServiceImplTest {
   @MockBean
   private RoleUserService roleUserService;
 
-
   @Before
   public void init() {
+
     reset(roleRepository);
     MockitoAnnotations.initMocks(this);
   }
 
   @Test
   public void getAll() throws Exception {
+
     List<Role> roles = new ArrayList<>();
 
     Role role = GenericBuilder.of(Role::new)
@@ -56,7 +56,6 @@ public class RoleServiceImplTest {
         .with(Role::setKey, "as")
         .with(Role::setName, "sadf")
         .build();
-
 
     roles.add(role);
 
@@ -70,6 +69,7 @@ public class RoleServiceImplTest {
   //region saveOrUpdate()
   @Test
   public void saveOrUpdate_WhenDtoEmpty_ShouldReturnException() {
+
     try {
       roleService.saveOrUpdate(null);
       Assert.fail();
@@ -84,6 +84,7 @@ public class RoleServiceImplTest {
 
   @Test
   public void saveOrUpdate_WhenDtoNameEmpty_ShouldReturnException() {
+
     try {
       roleService.saveOrUpdate(GenericBuilder.of(RoleDto::new).build());
       Assert.fail();
@@ -94,6 +95,7 @@ public class RoleServiceImplTest {
 
   @Test
   public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
+
     Role entity = new Role();
     entity.setId(5);
     entity.setKey("ROLE_CREATE");
@@ -117,6 +119,7 @@ public class RoleServiceImplTest {
 
   @Test
   public void getById_WhenEmpty_ShouldReturnException() {
+
     given(roleRepository.findOne(anyInt())).willReturn(null);
 
     try {
@@ -129,6 +132,7 @@ public class RoleServiceImplTest {
 
   @Test
   public void getById_WhenFull_ShouldReturnInfo() {
+
     Role role = GenericBuilder.of(Role::new)
         .with(Role::setId, 1)
         .with(Role::setKey, "RoleKey")
@@ -149,6 +153,7 @@ public class RoleServiceImplTest {
 
   @Test
   public void deleteById_WhenEmpty_ShouldReturnException() {
+
     doThrow(EmptyResultDataAccessException.class).when(roleRepository).delete(anyInt());
     given(roleUserService.existUserByRole(anyInt())).willReturn(false);
 
@@ -162,6 +167,7 @@ public class RoleServiceImplTest {
 
   @Test
   public void deleteById_WhenExistUser_ShouldReturnException() {
+
     given(roleUserService.existUserByRole(anyInt())).willReturn(true);
     try {
       roleService.deleteById(anyInt());
@@ -173,6 +179,7 @@ public class RoleServiceImplTest {
 
   @Test
   public void deleteById_WhenFull_ShouldDeleteSuccess() {
+
     given(roleRepository.exists(anyInt())).willReturn(true);
     try {
       roleService.deleteById(anyInt());

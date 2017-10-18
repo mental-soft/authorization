@@ -1,20 +1,12 @@
 package com.teammental.authorization.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyListOf;
-import static org.mockito.Mockito.reset;
-
 import com.teammental.authorization.dto.RoleUserDto;
 import com.teammental.authorization.entity.RoleUser;
 import com.teammental.authorization.exception.RoleUserException;
 import com.teammental.authorization.jpa.RoleUserRepository;
 import com.teammental.mebuilder.GenericBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +16,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
+import static org.junit.Assert.assertEquals;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyListOf;
+import static org.mockito.Mockito.reset;
 
 /**
  * Created by okan on 6.09.2017.
@@ -32,6 +28,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class RoleUserServiceImplTest {
+
   @InjectMocks
   private RoleUserService roleUserService = new RoleUserServiceImpl();
   @MockBean(name = "roleUserRepository")
@@ -39,6 +36,7 @@ public class RoleUserServiceImplTest {
 
   @Before
   public void init() {
+
     reset(roleUserRepository);
     MockitoAnnotations.initMocks(this);
   }
@@ -65,6 +63,7 @@ public class RoleUserServiceImplTest {
 
   @Test
   public void getByRoleId_WhenEmpty_ShouldReturnException() {
+
     given(roleUserRepository.findByRoleId(anyInt())).willReturn(null);
 
     try {
@@ -77,6 +76,7 @@ public class RoleUserServiceImplTest {
 
   @Test
   public void deleteById_WhenFull_ShouldDeleteSuccess() {
+
     given(roleUserRepository.countByRoleId(anyInt())).willReturn(1);
     try {
       roleUserService.deleteByRoleId(anyInt());
@@ -88,6 +88,7 @@ public class RoleUserServiceImplTest {
 
   @Test
   public void save_WhenDtoListEmpty_ShouldReturnException() {
+
     try {
       roleUserService.save(null);
       Assert.fail();
@@ -98,6 +99,7 @@ public class RoleUserServiceImplTest {
 
   @Test
   public void save_WhenDtoListItemEmpty_ShouldReturnException() {
+
     RoleUserDto roleUserDto = GenericBuilder.of(RoleUserDto::new)
         .with(RoleUserDto::setRoleId, 5)
         .build();
@@ -118,6 +120,7 @@ public class RoleUserServiceImplTest {
 
   @Test
   public void save_WhenDtoListFull_ShouldReturnEntityRoleId() {
+
     RoleUser roleUser = GenericBuilder.of(RoleUser::new)
         .with(RoleUser::setRoleId, 10)
         .with(RoleUser::setUserId, 5)
@@ -145,7 +148,7 @@ public class RoleUserServiceImplTest {
       roleUserDtoList.add(roleUserDto1);
 
       int entityRoleId = roleUserService.save(roleUserDtoList);
-      assertEquals(10,entityRoleId);
+      assertEquals(10, entityRoleId);
     } catch (Exception e) {
       Assert.fail();
     }
@@ -154,6 +157,7 @@ public class RoleUserServiceImplTest {
 
   @Test
   public void save_WhenDtoListFullWithDelete_ShouldReturnEntityRoleId() {
+
     RoleUser roleUser = GenericBuilder.of(RoleUser::new)
         .with(RoleUser::setRoleId, 10)
         .with(RoleUser::setUserId, 5)
@@ -182,12 +186,11 @@ public class RoleUserServiceImplTest {
       roleUserDtoList.add(roleUserDto1);
 
       int entityRoleId = roleUserService.save(roleUserDtoList);
-      assertEquals(10,entityRoleId);
+      assertEquals(10, entityRoleId);
     } catch (Exception e) {
       Assert.fail();
     }
 
   }
-
 
 }

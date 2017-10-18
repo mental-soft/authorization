@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 /**
  * Created by okan on 5.08.2017.
  */
@@ -31,20 +30,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RoleController {
 
-  @Autowired
-  RoleService roleService;
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
-
   public static final String KEY_REQUIRED = "*Anahtar alanı zorunludur.";
   public static final String NAME_REQUIRED = "*Ad alanı zorunludur.";
   public static final String ALREADY_EXIST_KEY = "Bu anahtar kelime ile bir rol zaten var.";
   public static final String SAVE_ERROR = "Kaydetme işlemi sırasında bir hata oluştu.";
   public static final String ROLE_NOT_FOUND = "Herhangi bir rol bulunamadı.";
-
   public static final String REQUEST_MAPPING_ROLE_ONE = "/roles/{id}";
   public static final String REQUEST_MAPPING_ROLES = "/roles";
-
+  private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
+  @Autowired
+  RoleService roleService;
 
   /**
    * Rolleri listeleme işlemi.
@@ -75,6 +70,7 @@ public class RoleController {
   @ResponseBody
   public ResponseEntity roleAddPost(@RequestBody RoleDto roleDto,
                                     HttpServletRequest request) throws Exception {
+
     LOGGER.info("********* Post başladı.");
     LOGGER.info(request.getMethod());
 
@@ -106,6 +102,7 @@ public class RoleController {
   }
 
   private ResponseEntity getResponseEntity(@RequestBody RoleDto roleDto) {
+
     if (roleDto.getKey().isEmpty()
         && roleDto.getName().isEmpty()) {
       return new ResponseEntity<String>(KEY_REQUIRED + NAME_REQUIRED, HttpStatus.BAD_REQUEST);
@@ -124,11 +121,11 @@ public class RoleController {
    * @return mesajlar
    */
 
-
   @PutMapping(value = {REQUEST_MAPPING_ROLE_ONE})
   @ResponseBody
   public ResponseEntity roleUpdatePut(@RequestBody RoleDto roleDto, @PathVariable int id,
                                       HttpServletRequest request) throws Exception {
+
     LOGGER.info("********* Put başladı.");
     LOGGER.info(request.getMethod());
 
@@ -165,6 +162,7 @@ public class RoleController {
   @GetMapping(value = REQUEST_MAPPING_ROLE_ONE,
       produces = "application/json")
   public ResponseEntity roleDetail(@PathVariable(value = "id") Integer id) {
+
     RoleDto roleDto;
 
     try {

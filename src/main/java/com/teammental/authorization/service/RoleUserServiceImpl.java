@@ -20,14 +20,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RoleUserServiceImpl implements RoleUserService {
 
-  private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(RoleUserServiceImpl.class);
   //region Messages
   public static final String NOT_FOUND_MESSAGE = "Herhangi bir rol ve kullanıcı bulunamadı.";
   public static final String PARAMETERS_MUST_BE_NOT_NULL = "Parametre girilmesi gerekmektedir.";
   public static final String LIST_OF_PARAMETERS_MUST_BE_NOT_NULL =
       "Liste elemanları girilmesi gerekmektedir.";
+  private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(RoleUserServiceImpl.class);
   //endregion
-
   @Autowired
   RoleRepository roleRepository;
 
@@ -36,6 +35,7 @@ public class RoleUserServiceImpl implements RoleUserService {
 
   @Override
   public List<RoleUserDto> getAllUserByRole(Integer roleId) throws RoleUserException {
+
     List<RoleUser> roleUserList = roleUserRepository.findByRoleId(roleId);
     if (roleUserList == null) {
       throw new RoleUserException(0, NOT_FOUND_MESSAGE);
@@ -47,6 +47,7 @@ public class RoleUserServiceImpl implements RoleUserService {
 
   @Override
   public Boolean existUserByRole(Integer roleId) {
+
     return roleUserRepository.countByRoleId(roleId) > 0 ? true : false;
   }
 
@@ -64,6 +65,7 @@ public class RoleUserServiceImpl implements RoleUserService {
   @Override
   @Transactional
   public int save(List<RoleUserDto> roleUserDtoList) throws RoleUserException {
+
     if (roleUserDtoList == null) {
       throw new RoleUserException(1, PARAMETERS_MUST_BE_NOT_NULL);
     }
@@ -97,6 +99,7 @@ public class RoleUserServiceImpl implements RoleUserService {
   }
 
   private boolean nullCheckListItem(List<RoleUserDto> roleUserDtoList) {
+
     List<RoleUserDto> roleUserDtos;
     roleUserDtos = roleUserDtoList.stream()
         .filter(r -> r.getRoleId() == null || r.getUserId() == null
@@ -110,6 +113,5 @@ public class RoleUserServiceImpl implements RoleUserService {
     }
 
   }
-
 
 }

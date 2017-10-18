@@ -17,8 +17,6 @@ import javax.persistence.Table;
 @Table(name = "ROLE")
 public class Role {
 
-
-
   @Id
   @Column(name = "id", columnDefinition = "integer")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,34 +32,42 @@ public class Role {
   private List<RoleUser> roleUsers;
 
   public Integer getId() {
+
     return id;
   }
 
   public void setId(Integer id) {
+
     this.id = id;
   }
 
   public String getKey() {
+
     return key;
   }
 
   public void setKey(String key) {
+
     this.key = key;
   }
 
   public String getName() {
+
     return name;
   }
 
   public void setName(String name) {
+
     this.name = name;
   }
 
   public List<RoleUser> getRoleUsers() {
+
     return roleUsers;
   }
 
   public void setRoleUsers(List<RoleUser> roleUsers) {
+
     this.roleUsers = roleUsers;
   }
 

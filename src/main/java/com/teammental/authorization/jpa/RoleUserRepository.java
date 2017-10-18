@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 public interface RoleUserRepository extends JpaRepository<RoleUser, Integer> {
+
   List<RoleUser> findByRoleId(Integer roleId);
 
   Integer countByRoleId(Integer roleId);
