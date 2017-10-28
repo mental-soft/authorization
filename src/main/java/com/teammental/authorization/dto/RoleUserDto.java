@@ -8,6 +8,7 @@ public class RoleUserDto {
   private Integer id;
   private Integer roleId;
   private Integer userId;
+
   private RoleDto roleDto;
 
   public RoleDto getRoleDto() {

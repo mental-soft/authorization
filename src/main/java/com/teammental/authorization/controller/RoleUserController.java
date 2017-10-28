@@ -55,31 +55,6 @@ public class RoleUserController {
 
   }
 
-  //  @PostMapping(value = REQUEST_MAPPING_ADD_USERS_TO_ROLE)
-  //  @ResponseBody
-  //  public ResponseEntity addUsersToRole(@RequestBody RoleUserDto roleUserDtoList,
-  //                                       HttpRequest httpRequest) throws Exception {
-  //    LOGGER.info("post başladı.");
-  //    return new ResponseEntity<String>("başarılı", HttpStatus.OK);
-
-  //    try {
-  //      int id;
-  //      id = roleUserService.save(roleUserDtoList);
-  //      if (id > 0) {
-  //        URI location = new URI("/roles/" + id + "/users");
-  //        return ResponseEntity.created(location).body("");
-  //      }
-  //    } catch (RoleUserException e) {
-  //      LOGGER.error("", e);
-  //      if (e.getCode() == 1) {
-  //        return new ResponseEntity<String>(e.getLabel(), HttpStatus.NOT_FOUND);
-  //      } else if (e.getCode() == 2) {
-  //        return new ResponseEntity<String>(e.getLabel(), HttpStatus.NOT_FOUND);
-  //      }
-  //    }
-  //    return new ResponseEntity<String>(AN_ERROR_OCCURED, HttpStatus.INTERNAL_SERVER_ERROR);
-  //  }
-
   /**
    * Role user eklerken önce silen sonra liste halinde RoleUser tablosuna ekler.
    *
@@ -110,8 +85,11 @@ public class RoleUserController {
       if (e.getCode() == 1) {
         return new ResponseEntity<String>(e.getLabel(), HttpStatus.NOT_FOUND);
       } else if (e.getCode() == 2) {
-        return new ResponseEntity<String>(e.getLabel(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<String>(e.getLabel(), HttpStatus.BAD_REQUEST);
       }
+
+    } catch (RuntimeException e) {
+      new ResponseEntity<String>(AN_ERROR_OCCURED, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     return new ResponseEntity<String>(AN_ERROR_OCCURED, HttpStatus.INTERNAL_SERVER_ERROR);
   }

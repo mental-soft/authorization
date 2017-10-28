@@ -59,7 +59,7 @@ public class RoleGenerator {
         .with(Role::setKey, key)
         .build();
 
-    List<RoleUser> roleUsers = RoleUserGenerator.prepareRandomListofRoleUser(role, 10);
+    List<RoleUser> roleUsers = RoleUserGenerator.generateRandomListOfRoleUser(role, 10);
     role.setRoleUsers(roleUsers);
 
     return role;

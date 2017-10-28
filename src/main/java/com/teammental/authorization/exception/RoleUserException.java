@@ -17,6 +17,10 @@ public class RoleUserException extends Exception {
     this.label = label;
   }
 
+  public RoleUserException() {
+
+  }
+
   /**
    * Code alanı ile dönülen hata mesajına göre rest uyarısı oluşuturulabilir.
    */

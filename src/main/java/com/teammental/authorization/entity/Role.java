@@ -1,5 +1,6 @@
 package com.teammental.authorization.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,6 +30,7 @@ public class Role {
   private String name;
 
   @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+  @JsonIgnore
   private List<RoleUser> roleUsers;
 
   public Integer getId() {

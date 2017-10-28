@@ -64,7 +64,7 @@ public class RoleUserServiceImpl implements RoleUserService {
 
   @Override
   @Transactional
-  public int save(List<RoleUserDto> roleUserDtoList) throws RoleUserException {
+  public int save(List<RoleUserDto> roleUserDtoList) throws RoleUserException, RuntimeException {
 
     if (roleUserDtoList == null) {
       throw new RoleUserException(1, PARAMETERS_MUST_BE_NOT_NULL);
@@ -82,14 +82,7 @@ public class RoleUserServiceImpl implements RoleUserService {
     if (roleUsersEntity != null && roleUsersEntity.size() > 0) {
       LOGGER.info("servis roleId: " + roleUsersEntity.get(0).getRoleId());
       deleteByRoleId(roleUsersEntity.get(0).getRoleId());
-      //      LOGGER.info("servis roleId: " + roleUsersEntity.get(0).getRoleId());
-      //      LOGGER.info("servis roleId: " + roleUsersEntity.get(1).getRoleId());
-      //      LOGGER.info("servis roleId: " + roleUsersEntity.get(2).getRoleId());
-      //      LOGGER.info("servis roleId: " + roleUsersEntity.get(2).getRole().getName());
       roleUsersEntity = roleUserRepository.save(roleUsersEntity);
-      //      for (RoleUser entity : roleUsersEntity) {
-      //        roleUserRepository.save(entity);
-      //      }
 
       return roleUsersEntity.get(0).getRoleId();
     } else {

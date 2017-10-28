@@ -1,5 +1,6 @@
 package com.teammental.authorization.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class RoleUser {
 
   @ManyToOne
   @JoinColumn(name = "role_id", referencedColumnName = "id")
+  @JsonIgnore
   private Role role;
 
   public Integer getId() {
