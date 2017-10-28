@@ -42,7 +42,7 @@ public class RoleUserGenerator {
 
   public static List<RoleUser> prepareRandomListofRoleUser(int size) {
 
-    Role role = RoleGenerator.prepareRandomRole();
+    Role role = RoleGenerator.generateRandomRole();
     return prepareRandomListofRoleUser(role, size);
   }
 }

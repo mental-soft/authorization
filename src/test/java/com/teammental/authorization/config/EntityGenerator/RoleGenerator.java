@@ -1,8 +1,10 @@
 package com.teammental.authorization.config.EntityGenerator;
 
+import com.teammental.authorization.dto.RoleDto;
 import com.teammental.authorization.entity.Role;
 import com.teammental.authorization.entity.RoleUser;
 import com.teammental.mebuilder.GenericBuilder;
+import com.teammental.memapper.MeMapper;
 import com.teammental.memapper.util.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +18,9 @@ public class RoleGenerator {
    * @return list of roles
    */
 
-  public static List<Role> prepareRandomListofRoles() {
+  public static List<Role> generateRandomListofRoles() {
 
-    List<Role> roles = prepareRandomListofRoles(10);
+    List<Role> roles = generateRandomListofRoles(10);
     return roles;
   }
 
@@ -28,11 +30,11 @@ public class RoleGenerator {
    * @return list of roles
    */
 
-  public static List<Role> prepareRandomListofRoles(int size) {
+  public static List<Role> generateRandomListofRoles(int size) {
 
     List<Role> roles = new ArrayList<>();
     for (int i = 0; i < size; i++) {
-      Role role = prepareRandomRole();
+      Role role = generateRandomRole();
       roles.add(role);
     }
     return roles;
@@ -44,10 +46,10 @@ public class RoleGenerator {
    * @return role
    */
 
-  public static Role prepareRandomRole() {
+  public static Role generateRandomRole() {
 
     Random random = new Random();
-    Integer id = random.nextInt();
+    Integer id = random.nextInt(Integer.MAX_VALUE - 1)  + 1;
     String name = StringUtil.generateRandomString(5);
     String key = StringUtil.generateRandomString(5);
 
@@ -62,5 +64,16 @@ public class RoleGenerator {
 
     return role;
 
+  }
+
+  /**
+   * Generates a random RoleDto object.
+   * @return created object
+   */
+  public static RoleDto generateRandomRoleDto() {
+    Role role = generateRandomRole();
+    RoleDto roleDto = (RoleDto) MeMapper.getMapperFrom(role)
+        .mapTo(RoleDto.class).get();
+    return roleDto;
   }
 }

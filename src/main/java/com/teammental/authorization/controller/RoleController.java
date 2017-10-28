@@ -103,8 +103,10 @@ public class RoleController {
 
   private ResponseEntity getResponseEntity(@RequestBody RoleDto roleDto) {
 
-    if (roleDto.getKey().isEmpty()
-        && roleDto.getName().isEmpty()) {
+    if (roleDto.getKey() == null
+        && roleDto.getName() == null) {
+      return new ResponseEntity<String>(KEY_REQUIRED + NAME_REQUIRED, HttpStatus.BAD_REQUEST);
+    } else if (roleDto.getKey().isEmpty() && roleDto.getName().isEmpty()) {
       return new ResponseEntity<String>(KEY_REQUIRED + NAME_REQUIRED, HttpStatus.BAD_REQUEST);
     } else if (roleDto.getKey().isEmpty()) {
       return new ResponseEntity<String>(KEY_REQUIRED, HttpStatus.BAD_REQUEST);
@@ -189,7 +191,7 @@ public class RoleController {
     } catch (RoleException e) {
       LOGGER.error("", e);
       if (e.getCode() == 0) {
-        return new ResponseEntity<String>(e.getLabel(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<String>(e.getLabel(), HttpStatus.FORBIDDEN);
       } else if (e.getCode() == 1) {
         return new ResponseEntity<String>(e.getLabel(), HttpStatus.NOT_FOUND);
       }
